@@ -12,6 +12,11 @@ function Signup () {
     const handleSubmit = (e) => {
         e.preventDefault();
         signup(username, email, password);
+
+        //cleaning form
+        setUsername('');
+        setEmail('');
+        setPassword('');
     }
 
     return ( 

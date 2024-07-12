@@ -46,7 +46,7 @@ export const useFirestore = (collection) => {
 
         try{
             const createdAt = timestamp.fromDate(new Date());
-            const addedDoc = await ref.add(doc);
+            const addedDoc = await ref.add({ ...doc, createdAt });
             dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDoc });
         }catch(err){
             dispatchIfNotCancelled({ type: 'ERROR', payload: err.message });
@@ -59,7 +59,9 @@ export const useFirestore = (collection) => {
 
     //cleanup function: fires when the component first unmounts
     useEffect(() => {
-        return setIsCancelled(true)
+        // without the first line the form doesn't clearup; student's solution
+        setIsCancelled(false);
+        return () => setIsCancelled(true)
     }, []);
 
     return { addDocument, deleteDocument, response };

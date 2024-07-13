@@ -10,6 +10,7 @@ export const useCollection = (collection) => {
     useEffect(() => {
         let ref = projectFirestore.collection(collection);
 
+        // real-time subscription
         const unsubscribe = ref.onSnapshot((snapshot) => {
             let results = [];
             snapshot.docs.forEach(doc => {

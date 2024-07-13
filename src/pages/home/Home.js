@@ -9,7 +9,8 @@ function Home () {
     const { user } = useAuthContext();
     const { documents, error } = useCollection(
         'transactions',
-        ["uid", "==", user.uid]
+        ["uid", "==", user.uid],
+        ["createdAt", "desc"]
     );
     console.log('documents and error', documents, error);
 

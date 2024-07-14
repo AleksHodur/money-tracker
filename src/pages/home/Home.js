@@ -12,7 +12,6 @@ function Home () {
         ["uid", "==", user.uid],
         ["createdAt", "desc"]
     );
-    console.log('documents and error', documents, error);
 
     return ( 
         <div className={styles.container}>
